@@ -78,6 +78,11 @@ next_version="${a[0]}.${a[1]}.${a[2]}"
 username=$(git config user.name)
 msg="$1 by $username"
 
+
+echo "Tag message: $msg"
+echo "Next version: v$next_version"
+
+
 # If its a dry run, just display the new release version number
 if [ ! -z $dry ]
 then
@@ -87,8 +92,8 @@ else
   # If a command fails, exit the script
   set -e
 
-  # Push master
-  git push origin master
+  # Push main
+  git push origin main
 
   # If it's not a dry run, let's go!
   # 3) Add git tag
@@ -98,7 +103,7 @@ else
   # 4) Push the new tag
 
   echo "Push the tag"
-  git push --tags origin master
+  git push --tags origin main
 
   echo -e "\e[32mRelease done: $next_version\e[0m"
 fi
